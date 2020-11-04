@@ -28,6 +28,15 @@ export default class Project extends React.Component {
       return stars;
    }
 
+   displayAdvancedLink() {
+      if (this.props.isAdvanced) {
+         <a href={this.props.project.githubUrl}>
+            <img src={linkIcon} width="16px" className="mr-2" />
+            {truncate(this.props.project.githubUrl, 33)}
+         </a>;
+      }
+   }
+
    render() {
       return (
          <div className="row mb-5">
@@ -92,15 +101,7 @@ export default class Project extends React.Component {
                      {formatDate(this.props.project.postedAt, "MMM. d, yyyy")}
                   </p>
                </a>
-               <a href={this.props.project.githubUrl}>
-                  <img
-                     src={linkIcon}
-                     width="16px"
-                     className="mr-2"
-                     alt="link icon"
-                  />
-                  {truncate(this.props.project.githubUrl, 33)}
-               </a>
+               {this.displayAdvancedLink()}
             </div>
          </div>
       );
