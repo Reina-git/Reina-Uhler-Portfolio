@@ -2,8 +2,8 @@ import React from "react";
 import "../style/master.scss";
 import Project from "./Project";
 import { projects } from "../data/projects";
-
 import Bio from "./Bio";
+import orderBy from "lodash/orderBy";
 
 console.log(projects);
 
@@ -18,6 +18,7 @@ export default class Home extends React.Component {
          isAdvanced: false,
          displayedProjects: activeProjects,
          searchInput: "",
+         projectOrder: '["postedAt", "desc"]',
       };
    }
 
@@ -41,6 +42,30 @@ export default class Home extends React.Component {
          };
       });
    }
+   setProjectOrder(e) {
+      // console.log(e.target.value);
+      // console.log(e.currentTarget.value);
+      const projectOrder = e.target.value;
+      const params = JSON.parse(projectOrder);
+      this.setState((prevState) => {
+         return {
+            projectOrder: projectOrder,
+            displayedProjects: orderBy(prevState.displayedProjects, ...params),
+         };
+      });
+   }
+
+   // function getOrderedProjects(arr, projectOrder) {
+
+   //    console.log(params);
+   //    // if (projectOrder === '["postedAt", "desc"]') {
+   //    //    return orderBy(arr, ...params);
+   //    // }
+   //    // if (projectOrder === '["rating", "desc"]') {
+   //    //    return orderBy(arr, ...params);
+   //    // }
+   //    return orderBy(arr, params);
+   // }
 
    render() {
       return (
@@ -87,8 +112,16 @@ export default class Home extends React.Component {
                            <input
                               type="radio"
                               id="most-recent"
-                              name="order-projects"
+                              name="project-order"
                               className="custom-control-input"
+                              checked={
+                                 this.state.projectOrder ===
+                                 '["postedAt", "desc"]'
+                              }
+                              onChange={(e) => {
+                                 this.setProjectOrder(e);
+                              }}
+                              value='["postedAt", "desc"]'
                            />
                            <label
                               className="custom-control-label"
@@ -101,8 +134,16 @@ export default class Home extends React.Component {
                            <input
                               type="radio"
                               id="most-popular"
-                              name="order-projects"
+                              name="project-order"
                               className="custom-control-input"
+                              value='["rating", "desc"]'
+                              checked={
+                                 this.state.projectOrder ===
+                                 '["rating", "desc"]'
+                              }
+                              onChange={(e) => {
+                                 this.setProjectOrder(e);
+                              }}
                            />
                            <label
                               className="custom-control-label"
