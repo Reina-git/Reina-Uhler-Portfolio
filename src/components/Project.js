@@ -6,8 +6,8 @@ import formatDate from "date-fns/format";
 import getCssClasses from "classnames";
 
 export default class Project extends React.Component {
-   constructor() {
-      super();
+   constructor(props) {
+      super(props);
       this.state = {
          isHoveredOver: false,
       };

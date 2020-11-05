@@ -8,21 +8,38 @@ import Bio from "./Bio";
 console.log(projects);
 
 export default class Home extends React.Component {
-   constructor() {
-      super();
+   constructor(props) {
+      super(props);
+      const activeProjects = projects.filter((project) => {
+         return project.isActive;
+      });
       this.state = {
+         activeProjects: activeProjects,
          isAdvanced: false,
+         displayedProjects: activeProjects,
+         searchInput: "",
       };
    }
 
    setIsAdvanced() {
       this.setState({ isAdvanced: !this.state.isAdvanced });
-
-      // if (this.state.isAdvanced) {
-      //    this.setState({ isAdvanced: false });
-      // } else {
-      //    this.setState({ isAdvanced: true });
-      // }
+   }
+   setSearchInput(e) {
+      const searchInput = e.target.value;
+      this.setState((prevState) => {
+         return {
+            searchInput: searchInput,
+            displayedProjects: prevState.activeProjects.filter((project) => {
+               const searchInputLowercase = searchInput.toLowerCase();
+               const projectTitle = project.title.toLowerCase();
+               const projectDesc = project.desc.toLowerCase();
+               return (
+                  projectTitle.includes(searchInputLowercase) ||
+                  projectDesc.includes(searchInputLowercase)
+               );
+            }),
+         };
+      });
    }
 
    render() {
@@ -37,6 +54,10 @@ export default class Home extends React.Component {
                            id="search-projects"
                            className="form-control"
                            placeholder="Search projects"
+                           value={this.state.searchInput}
+                           onChange={(e) => {
+                              this.setSearchInput(e);
+                           }}
                         />
                      </div>
                      <div className="col-12 col-sm-4">
@@ -92,7 +113,7 @@ export default class Home extends React.Component {
                         </div>
                      </div>
                   </div>
-                  {projects.map((project) => {
+                  {this.state.displayedProjects.map((project) => {
                      return (
                         <Project
                            project={project}
