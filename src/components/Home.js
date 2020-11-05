@@ -13,12 +13,15 @@ export default class Home extends React.Component {
       const activeProjects = projects.filter((project) => {
          return project.isActive;
       });
+      const defaultOrder = '["postedAt", "desc"]';
+      const params = JSON.parse(defaultOrder);
+      const orderedProjects = orderBy(activeProjects, ...params);
       this.state = {
-         activeProjects: activeProjects,
+         activeProjects: orderedProjects,
          isAdvanced: false,
-         displayedProjects: activeProjects,
+         displayedProjects: orderedProjects,
          searchInput: "",
-         projectOrder: '["postedAt", "desc"]',
+         projectOrder: defaultOrder,
       };
    }
 
@@ -43,8 +46,6 @@ export default class Home extends React.Component {
       });
    }
    setProjectOrder(e) {
-      // console.log(e.target.value);
-      // console.log(e.currentTarget.value);
       const projectOrder = e.target.value;
       const params = JSON.parse(projectOrder);
       this.setState((prevState) => {
@@ -54,19 +55,6 @@ export default class Home extends React.Component {
          };
       });
    }
-
-   // function getOrderedProjects(arr, projectOrder) {
-
-   //    console.log(params);
-   //    // if (projectOrder === '["postedAt", "desc"]') {
-   //    //    return orderBy(arr, ...params);
-   //    // }
-   //    // if (projectOrder === '["rating", "desc"]') {
-   //    //    return orderBy(arr, ...params);
-   //    // }
-   //    return orderBy(arr, params);
-   // }
-
    render() {
       return (
          <div className="container">
