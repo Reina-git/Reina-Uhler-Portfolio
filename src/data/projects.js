@@ -14,11 +14,11 @@ export const projects = [
    {
       id: "7577e664-289a-4adc-856b-bfaf87baac06",
       title: "Walkthrough of Crowd Tag prototype",
-      rating: 4,
+      rating: 5,
       desc:
          "Prototype of Crowd Tag, an app that helps libraries crowdsource metadata for their photographic collections.",
       totalMinutes: 3,
-      postedAt: 1604351580776,
+      postedAt: 1604111590776,
       githubUrl: "https://github.com/Reina-git/Crowd-tag",
       image: "walkthrough-of-crowd-tag-prototype.jpg",
       youtubeUrl: "https://www.youtube.com/watch?v=LN02lBrDdt4&t=1s",

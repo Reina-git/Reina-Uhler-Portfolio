@@ -41,6 +41,8 @@ export default class Project extends React.Component {
             >
                <a
                   href={this.props.project.youtubeUrl}
+                  target="blank"
+                  rel="noopener noreferrer"
                   className={getCssClasses("text-reset text-decoration-none", {
                      "text-underline": this.state.isHoveredOver,
                   })}
@@ -59,7 +61,11 @@ export default class Project extends React.Component {
                   this.setIsHoveredOver(false);
                }}
             >
-               <a href={this.props.project.youtubeUrl}>
+               <a
+                  href={this.props.project.youtubeUrl}
+                  target="blank"
+                  rel="noopener noreferrer"
+               >
                   <img
                      src={
                         require(`../image/${this.props.project.image}`).default
@@ -73,6 +79,8 @@ export default class Project extends React.Component {
             <div className="col-12 col-md-8 mt-3 mt-md-n1">
                <a
                   href={this.props.project.youtubeUrl}
+                  target="blank"
+                  rel="noopener noreferrer"
                   className="text-decoration-none text-reset"
                   onMouseEnter={() => {
                      this.setIsHoveredOver(true);
