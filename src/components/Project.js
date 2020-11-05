@@ -27,13 +27,6 @@ export default class Project extends React.Component {
       }
       return stars;
    }
-
-   // displayAdvancedLink() {
-   //    if (this.props.isAdvanced) {
-
-   //    }
-   // }
-
    render() {
       return (
          <div className="row mb-5">
@@ -68,8 +61,9 @@ export default class Project extends React.Component {
             >
                <a href={this.props.project.youtubeUrl}>
                   <img
-                     src={require("../image/validation-of-email-and-password-on-account-creation.webp")}
-                     // src={require("../image/" + this.props.project.image)}
+                     src={
+                        require(`../image/${this.props.project.image}`).default
+                     }
                      width="510px"
                      className="img-fluid"
                      alt={this.props.project.title}
@@ -100,7 +94,7 @@ export default class Project extends React.Component {
                </a>
                {this.props.isAdvanced && (
                   <a href={this.props.project.githubUrl}>
-                     <img src={linkIcon} width="16px" className="mr-2" />
+                     <img src={linkIcon} width="16px" className="mr-2" alt="" />
                      {truncate(this.props.project.githubUrl, 33)}
                   </a>
                )}
