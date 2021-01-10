@@ -24,4 +24,16 @@ export const projects = [
       youtubeUrl: "https://www.youtube.com/watch?v=7upUHKgsLLI",
       isActive: true,
    },
+   {
+      id: "",
+      title: "Making API calls and storing data in Redux store",
+      rating: 4,
+      desc: "Creating global state in Redux using API call to get data",
+      totalMinutes: 2,
+      postedAt: 1607543638656,
+      githubUrl: "https://github.com/Reina-git/Crowd-tag",
+      image: "APIRedux.webp",
+      youtubeUrl: "https://youtu.be/tVcmnaIyX0Q",
+      isActive: true,
+   },
 ];
